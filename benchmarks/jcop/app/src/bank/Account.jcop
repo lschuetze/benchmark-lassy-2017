@@ -1,0 +1,24 @@
+package bank;
+
+import java.util.List;
+import java.util.LinkedList;
+
+public class Account {
+  private float balance;
+
+  public Account(float balance) {
+    this.balance = balance;
+  }
+
+  public void decrease(float amount) {
+    balance -= amount;
+  }
+
+  public void increase(float amount) {
+    balance += amount;
+  }
+
+  public float getBalance() {
+    return balance;
+  }
+}

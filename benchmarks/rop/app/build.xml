@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="rop" default="compile" basedir=".">
+
+	<path id="cp">
+		<pathelement path="${build.dir}"/>
+	</path>
+
+	<target name="compile" depends="clean">
+		<mkdir dir="bin" />
+		<javac srcdir="src" destdir="bin" includeantruntime="false"
+			source="1.8" target="1.8" debug="true">
+			<classpath refid="cp" />
+		</javac>
+	</target>
+
+	<target name="jar" depends="compile">
+		<mkdir dir="build" />
+		<jar jarfile="build/rop-benchmark.jar" basedir="bin">
+			<manifest>
+				<attribute name="Main-Class" value="Harness" />
+			</manifest>
+		</jar>
+  </target>
+
+	<target name="clean">
+		<delete dir="build" />
+		<delete dir="bin" />
+	</target>
+</project>

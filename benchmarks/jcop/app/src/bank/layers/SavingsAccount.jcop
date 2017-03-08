@@ -1,0 +1,9 @@
+package bank;
+
+public layer SavingsAccount {
+  private static final float FEE = 0.1f;
+
+  public void Account.decrease(float amount) {
+    proceed(amount + amount * FEE);
+  }
+}

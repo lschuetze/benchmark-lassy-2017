@@ -1,0 +1,9 @@
+package bank;
+
+public layer Target {
+
+  public void Account.increase(float amount) {
+    //System.out.println("deposit");
+    proceed(amount);
+  }
+}

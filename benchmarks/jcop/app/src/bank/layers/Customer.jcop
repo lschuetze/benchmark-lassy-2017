@@ -1,0 +1,8 @@
+package bank;
+
+public layer Customer {
+
+  public void addAccount(Account a) {
+
+  }
+}

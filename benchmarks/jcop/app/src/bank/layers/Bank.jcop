@@ -1,0 +1,51 @@
+package bank;
+
+import java.util.List;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.HashMap;
+
+public layer Bank {
+  private Map<Person, Customer> customers;
+  private List<Account> checkingAccounts;
+  private List<Account> savingAccounts;
+
+  public List<Account> getCheckingAccounts() {
+    return checkingAccounts;
+  }
+
+  public List<Account> getSavingAccounts() {
+    return savingAccounts;
+  }
+
+  public void addCustomer(Person customer) {
+    if (customers == null) {
+      customers = new HashMap<>();
+    }
+    customers.add(customer, new Customer());
+  }
+
+  public void addCheckingsAccount(Person c, Account a) {
+    //with the customer layer
+    Customer c = customers.get(c);
+    with(c) {
+      c.addAccount(a);
+      if (checkingAccounts == null) {
+        checkingAccounts = new LinkedList<>();
+      }
+      checkingAccounts.add(a);
+    }
+  }
+
+  public void addSavingsAccount(Person c, SavingsAccount a) {
+    //with the customer layer
+    Customer c = customers.get(c);
+    with(c) {
+      c.addAccount(a);
+      if (savingAccounts == null) {
+        savingAccounts = new LinkedList<>();
+      }
+      savingAccounts.add(a);
+    }
+  }
+}

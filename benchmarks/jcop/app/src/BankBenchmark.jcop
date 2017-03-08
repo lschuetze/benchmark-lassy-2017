@@ -1,0 +1,48 @@
+import bank.*;
+
+public class BankBenchmark extends Benchmark {
+
+	private Bank bank;
+
+	@Override
+	public boolean innerBenchmarkLoop(final int innerIterations) {
+		with(bank) {
+			for (Account from : bank.getCheckingAccounts()) {
+				float amount = from.getBalance() / (float) innerIterations;
+				for (Account to : bank.getSavingAccounts()) {
+					Transaction transaction = new Transaction();
+					with(transaction) {
+						transaction.execute(from, to, amount);
+					}
+				}
+			}
+		}
+		return true;
+	}
+
+	public boolean setUp(final int innerIterations) {
+		bank = new Bank();
+		with(bank) {
+			for (int i = 0; i < innerIterations; ++i) {
+				Person p = new Person();
+				bank.addCustomer(p);
+
+				Account sa = new Account(1000.0f);
+				Account ca = new Account(1000.0f);
+				bank.addSavingsAccount(p, sa);
+				bank.addCheckingsAccount(p, ca);
+			}
+		}
+		return true;
+	}
+
+	@Override
+	public Object benchmark() {
+		throw new RuntimeException("Should never be reached");
+	}
+
+	@Override
+	public boolean verifyResult(Object result) {
+		throw new RuntimeException("Should never be reached");
+	}
+}
